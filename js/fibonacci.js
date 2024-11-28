@@ -1,21 +1,59 @@
 //F I B O N A C C I 
-//considerando limite hasta mil, usando una función recursiva y devolviendolo en un array en consola
-const fibonacci = (a=0, b=1, limite = 1000, secuencia =[a]) => 
-    b >limite ? secuencia : fibonacci (b, a + b, limite,[...secuencia, b]);
+//Se comienza con los dos primeros números de la secuenia,
+// luego un array para los números Fibonacci
+// Se suman los dos últimos números de la secuencia y detener la secuencia al exceder 1000
+// se agregan los números de la secuencia fibonacci, los pares e impares a la secuencia y se manda a consola
 
-console.log('Secuencia Fibonacci desde cero hasta mil: ');
-console.log(fibonacci());
+const fibonacci = () => {
+    let fib = [0, 1];
+    for (let i = 2; i <= 1000; i++) {
+      let nextFib = fib[i - 1] + fib[i - 2];
+      if (nextFib > 1000) break;
+      fib.push(nextFib);
+    }
+    return fib;
+  };
 
-//secuencia fibonacci de numeros pares entre cero y mil
-const numerosPares = (n=0, limite = 1000, pares =[]) =>
-    n >limite ? pares : numerosPares (n+1, limite, n%2 === 0 ? [...pares, n] : pares);
+    console.log('Secuencia Fibonacci: ', fibonacci());
 
-console.log('Numeros pares entre cero y mil: ');
-console.log(numerosPares());
 
-//secuencia fibonacci de numeros impares entre cero y mil
-const numerosImpares = (n=0,limite =1000, impares =[] ) =>
-    n > limite ? impares: numerosImpares(n+1, limite, n%2 !== 0 ? [...impares, n] : impares);
 
-console.log('Numeros impares entre cero y mil: ');
-console.log(numerosImpares());
+  
+  const fibonacciPares = () => {
+    let fib = [0, 1]
+    let pares = []
+    for (let i = 2; i <= 1000; i++) {
+      let nextFib = fib[i - 1] + fib[i - 2] 
+      if (nextFib > 1000) break
+      fib.push(nextFib)
+      
+      // Verificar si el número es par
+      if (nextFib % 2 === 0) {
+        pares.push(nextFib); // Agregar los números pares al array
+      }
+    }
+    return pares;
+  };
+  
+  console.log('Fibonacci sólo números pares: ', fibonacciPares());
+  
+
+  
+
+  const fibonacciImpares = () => {
+  let fib = [0, 1]
+  let impares = []
+  for (let i = 2; i <= 1000; i++) {
+    let nextFib = fib[i - 1] + fib[i - 2]
+    if (nextFib > 1000) break
+    fib.push(nextFib)
+    
+    // Verificar si el número es impar
+    if (nextFib % 2 !== 0) {
+      impares.push(nextFib); // Agregar los números impares al array
+    }
+  }
+  return impares;
+};
+
+console.log('Fibonacci sólo números impares: ', fibonacciImpares());
